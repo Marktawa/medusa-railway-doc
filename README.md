@@ -2,6 +2,8 @@
 
 <!--Article for Deploy Medusa on Railway-->
 
+![cover](/gh-railway-medusa-cover.png)
+
 In this article you will learn how to build deploy a Medusa store. You will deploy your Medusa backend server to Railway, the Store Admin frontend to Cloudflare and the Storefront to Cloudflare as well. You will use Neon to host your PostgreSQL database and GitHub to store the source code for production.
 
 The method used here is a manual method. Hopefully, in the near future I will provide an article on an automated method of deployment.
@@ -47,9 +49,9 @@ Visit [Neon - Sign Up](https://console.neon.tech/signup) page if you haven't sig
 
 [Create a new project](https://console.neon.tech/app/projects) in the Neon console. Give your project a name like `medusastore` and your database a name like `storedb` then click on **Create project**.
 
-![New Neon Project](https://res.cloudinary.com/craigsims808/image/upload/v1722858546/articles/railway-medusa/neon-sign-up_hvem5d.png)
+![New Neon Project](https://res.cloudinary.com/craigsims808/image/upload/v1722858782/articles/railway-medusa/new-project-neon_iepjio.png)
 
-Copy your connection string which will look something like: `postgres://dominggobana:JyyuEdr809p@df-hidden-bonus-ertd7sio.us-east-3.aws.neon.tech/storedb?sslmode=require`. It is in the form `postgres://[user]:[password]@[host]/[dbname]. You will provide this connection string as a database URL to your Medusa server in the next steps.
+Copy your connection string which will look something like: `postgres://dominggobana:JyyuEdr809p@df-hidden-bonus-ertd7sio.us-east-3.aws.neon.tech/storedb?sslmode=require`. It is in the form `postgres://[user]:[password]@[host]/[dbname]`. You will provide this connection string as a database URL to your Medusa server in the next steps.
 
 ### Install Medusa CLI
 
@@ -116,9 +118,11 @@ If the server is working correctly, you should see a list of products.
 
 Visit [localhost:7001](http://localhost:7001) in your browser to see the Medusa Admin Dashboard. Use the Email `admin@medusa-test.com` and Password `supersecret` to log in.
 
-![Medusa Admin Dashboard]()
+![Medusa Admin Dashboard Login](https://res.cloudinary.com/craigsims808/image/upload/v1722860520/articles/railway-medusa/medusa-admin-login_yyrbq8.png)
 
 In the **Products** section of your dashboard you should see a list of products. This is the dummy data you seeded into your database in the previous step.
+
+![Medusa Admin Dashboard - Products Section](https://res.cloudinary.com/craigsims808/image/upload/v1722860625/articles/railway-medusa/medusa-admin-products_zdplb4.png)
 
 ## Install Medusa Storefront Locally
 
@@ -145,7 +149,7 @@ npm run dev
 
 Your Next.js Starter Storefront will start running on port `8000`. Visit [localhost:8000](http://localhost:8000) in your browser to see the storefront.
 
-![Medusa Storefront Home Page](/tf.png)
+![Medusa Storefront Home Page](https://res.cloudinary.com/craigsims808/image/upload/v1722861405/articles/railway-medusa/medusa-storefront_ghfhzn.png)
 
 If all is working you should see the storefront with products from your backend displayed.
 
@@ -658,7 +662,7 @@ Access `<YOUR_APP_URL>/health` to get health status of your deployed backend.
 
 ### Test the Storefront
 
-Revisit your Cloudflare Dashboard and open the **Settings** page for your live storefront project. Update the value for environment variable `MEDUSA_BACKEND_URL` with the URL to your deployed Medusa backend server on Railway.
+Revisit your Cloudflare Dashboard and open the **Settings** page for your live storefront project. Update the value for environment variable `NEXT_PUBLIC_MEDUSA_BACKEND_URL` with the URL to your deployed Medusa backend server on Railway and `NEXT_PUBLIC_BASE_URL` with the URL to your deployed storefront.
 
 Save the settings and rebuild your storefront deployment.
 
